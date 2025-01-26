@@ -2,7 +2,7 @@ export type User = {
   id: number;
   email: string;
   status: string;
-  role: "ADMIN" | "USER";
+  role: UserRole;
   createdDate: string;
   storeId: number | null;
 };
@@ -17,3 +17,5 @@ export type APIResponse = {
   message: string;
   payload: any;
 };
+
+export type UserRole = "ADMIN" | "USER";
