@@ -11,6 +11,7 @@ import { useDashboard } from "./useDashboard";
 import { User } from "../../types";
 import { navigation } from "../../navigation";
 import { useNavigate } from "react-router-dom";
+import ProtectedRoute from "../../components/ProtectedRoute";
 
 const Status = ({ user }: { user: User | null | undefined }) => {
   return (
@@ -30,6 +31,7 @@ const Dashboard = () => {
   const { collapsed, componentkey, toggleCollapse, setComponentKey } =
     useDashboard();
   const navigate = useNavigate();
+  const navItem = navigation.find((nav) => nav.key === componentkey);
   return (
     <>
       <div className="w-full bg-blue-500 px-2 py-2 h-[48px] flex items-center justify-between">
@@ -72,7 +74,7 @@ const Dashboard = () => {
         </Dropdown>
       </div>
       <div className="w-full flex" style={{ height: "calc(100vh - 48px)" }}>
-        <div className="w-[256px] h-full">
+        <div className="w-[256px] max-h-full">
           <Menu
             className="!bg-blue-300 h-full"
             mode="inline"
@@ -84,8 +86,11 @@ const Dashboard = () => {
             }}
           />
         </div>
-        {navigation.find((item) => item.key === componentkey)?.component ??
-          null}
+        {navItem ? (
+          <ProtectedRoute accessibleRoles={navItem.roles}>
+            {navItem.component}
+          </ProtectedRoute>
+        ) : null}
       </div>
     </>
   );

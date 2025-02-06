@@ -1,5 +1,7 @@
 import { EnvConfig } from "../types";
 import { AuthService } from "./auth-service/AuthService";
+import { CustomerService } from "./customer-service/CustomerService";
+import { IdentificationTypeService } from "./identification-type/IdentificationType";
 
 export class ServiceFactory {
   private static instance: ServiceFactory;
@@ -17,5 +19,13 @@ export class ServiceFactory {
 
   public getAuthService() {
     return new AuthService(ServiceFactory.env);
+  }
+
+  public getCustomerService() {
+    return new CustomerService(ServiceFactory.env);
+  }
+
+  public getIdentificationTypeService() {
+    return new IdentificationTypeService(ServiceFactory.env);
   }
 }

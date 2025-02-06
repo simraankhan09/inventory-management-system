@@ -19,3 +19,38 @@ export type APIResponse = {
 };
 
 export type UserRole = "ADMIN" | "USER";
+
+export type Customer = {
+  id: number;
+  first_name: string;
+  last_name: string;
+  common_address_id: number;
+  telephone_no?: string;
+  date_of_birth?: string;
+  customer_ref_code: string;
+  identification_id: number;
+  userId: number;
+};
+
+export type PaginatedRequest = {
+  params: {
+    searchKey: string;
+    searchTerm: string;
+  };
+  pageSize: number;
+  pageNumber: number;
+};
+
+export interface PaginatedResponse<T> {
+  content: T[];
+  total: number;
+  current: number;
+  size: number;
+}
+
+export type CommonAddressType = {
+  buildingNo: number;
+  street: string;
+  city: string;
+  postalCode: number;
+};

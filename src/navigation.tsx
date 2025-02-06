@@ -3,6 +3,7 @@ import { FaHouse, FaUserTie } from "react-icons/fa6";
 import { UserRole } from "./types";
 import HomePage from "./pages/home-page/HomePage";
 import CustomerPage from "./pages/customer-page/CustomerPage";
+import CustomerCreate from "./pages/customer-page/CustomerCreate";
 
 export interface MenuItem {
   key: string;
@@ -10,7 +11,6 @@ export interface MenuItem {
   label: string;
   roles?: UserRole[];
   icon?: React.ReactNode;
-  children?: MenuItem[];
   component: React.ReactNode;
 }
 
@@ -25,10 +25,18 @@ export const navigation: MenuItem[] = [
   },
   {
     label: "Customers",
-    key: "customers",
-    path: "customers",
+    key: "/home/customers",
+    path: "/home/customers",
     icon: <FaUserTie />,
-    roles: ["USER", "ADMIN"],
+    roles: ["ADMIN", "USER"],
     component: <CustomerPage />,
   },
 ];
+
+export const routes: {
+  id: string;
+  key: string;
+  path: string;
+  element: React.ReactNode;
+  roles?: string[];
+}[] = [];
